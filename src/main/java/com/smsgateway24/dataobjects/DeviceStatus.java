@@ -1,12 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.smsgateway24.dataobjects;
 
 /**
  *
- * @author ylrya
+ * @author laks
  */
 public class DeviceStatus {
 

@@ -36,4 +36,14 @@
         </dependency>
 
     </dependencies>
+
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub 9laksy Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/9laksy/smsgateway24-java-sdk</url>
+        </repository>
+    </distributionManagement>
+
 </project>

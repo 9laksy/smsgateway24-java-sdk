@@ -14,7 +14,7 @@ class SmsGateway24Test {
     @Test
     void testResponseException() {
         SmsGateway24 sms = new SmsGateway24();
-        Throwable exception = assertThrows(ResponseException.class, () -> sms.getToken("smsgateway24@mailinator.com", "11qn2NAa9AP8qcFHp"));
+        Throwable exception = assertThrows(ResponseException.class, () -> sms.getToken("<your login email>", "<your login password"));
         assertEquals("Login or password incorrect", exception.getMessage());
     }
 
@@ -22,17 +22,17 @@ class SmsGateway24Test {
     void testGetToken() {
         SmsGateway24 sms = new SmsGateway24();
         try {
-            String token = sms.getToken("smsgateway24@mailinator.com", "qn2NAa9AP8qcFHp");
+            String token = sms.getToken("<your login email>", "<your login password");
             System.out.println(token);
         } catch (ResponseException te) {
             te.printStackTrace();
         }
-        //{"error":0,"token":"3643122b22cdabf30e832aacd3ce05f3","message":"OK"}
+        //{"error":0,"token":"ypur token","message":"OK"}
     }
 
     @Test
     void testAddSms() {
-        SmsGateway24 sms = new SmsGateway24(new Token("3643122b22cdabf30e832aacd3ce05f3"), new Device(2422));
+        SmsGateway24 sms = new SmsGateway24(new Token("<your token>"), new Device(2422));
         try {
             sms.add("1234567890", "sdfsdfsf");
         } catch (ResponseException e) {

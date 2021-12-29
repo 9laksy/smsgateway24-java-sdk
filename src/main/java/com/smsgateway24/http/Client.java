@@ -1,5 +1,6 @@
 package com.smsgateway24.http;
 
+import com.google.gson.Gson;
 import com.smsgateway24.token.Token;
 
 import java.io.IOException;
@@ -86,6 +87,7 @@ public class Client {
 
             // print response body
             System.out.println(response.body());
+
             return response.body();
 
         } catch (IOException | InterruptedException e) {

@@ -5,6 +5,7 @@ import com.smsgateway24.exceptions.TokenException;
 import com.smsgateway24.http.Client;
 import com.smsgateway24.http.EndPoints;
 import com.smsgateway24.token.Token;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -51,6 +52,7 @@ public class SmsGateway24 implements com.smsgateway24.api.SmsGateway24 {
         data.put("sim", sim);
         data.put("customerId", customer_id);
         data.put("urgent", urgent);
+
 
         return client.post(EndPoints.ADD_SMS, data);
     }

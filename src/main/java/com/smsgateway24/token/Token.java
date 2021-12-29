@@ -43,7 +43,7 @@ public class Token {
         Gson gson = new Gson();
         TokenResponse tokenResponse = gson.fromJson(c.post(EndPoints.GET_TOKEN, data), TokenResponse.class);
         if(tokenResponse.token == null) {
-            throw new TokenException(tokenResponse.message);
+            throw new TokenException(tokenResponse.getMessage());
         }
         this.setValue(tokenResponse.token);
     }

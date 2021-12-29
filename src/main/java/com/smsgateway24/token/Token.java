@@ -1,7 +1,25 @@
 package com.smsgateway24.token;
 
+import com.google.gson.Gson;
+import com.smsgateway24.exceptions.TokenException;
+import com.smsgateway24.http.Client;
+import com.smsgateway24.http.EndPoints;
+import com.smsgateway24.response.TokenResponse;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class Token {
     private String value;
+
+    private String email;
+    private String pass;
+
+    public Token(String email, String password) throws TokenException {
+        this.email = email;
+        this.pass = password;
+        this.getToken();
+    }
 
     public Token(String value) {
         this.value = value;
@@ -13,5 +31,20 @@ public class Token {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    private void getToken() throws TokenException {
+        Client c = new Client();
+
+        Map<Object, Object> data = new HashMap<>();
+        data.put("email", this.email);
+        data.put("pass", this.pass);
+
+        Gson gson = new Gson();
+        TokenResponse tokenResponse = gson.fromJson(c.post(EndPoints.GET_TOKEN, data), TokenResponse.class);
+        if(tokenResponse.token == null) {
+            throw new TokenException(tokenResponse.message);
+        }
+        this.setValue(tokenResponse.token);
     }
 }

@@ -1,6 +1,7 @@
 package com.smsgateway24;
 
 import com.smsgateway24.dataobjects.Device;
+import com.smsgateway24.exceptions.TokenException;
 import com.smsgateway24.http.Client;
 import com.smsgateway24.http.EndPoints;
 import com.smsgateway24.token.Token;
@@ -12,9 +13,16 @@ public class SmsGateway24 implements com.smsgateway24.api.SmsGateway24 {
     protected Client client;
     protected Device device;
 
+    public SmsGateway24() {}
+
     public SmsGateway24(Token token, Device device) {
         this.client = new Client(token);
         this.device = device;
+    }
+
+    @Override
+    public String getToken(String email, String password) throws TokenException {
+        return new Token(email, password).getValue();
     }
 
     @Override

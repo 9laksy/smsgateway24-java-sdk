@@ -9,7 +9,7 @@ public class DeviceStatus {
     private LastSeenDate lastseen;
     private long device_id;
     private String title;
-
+    
     public DeviceStatus(LastSeenDate lastSeenDate, int device_id, String title) {
         this.lastseen = lastSeenDate;
         this.device_id = device_id;

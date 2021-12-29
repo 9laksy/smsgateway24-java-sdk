@@ -1,9 +1,13 @@
 package com.smsgateway24.http;
 
 import com.google.gson.Gson;
+import com.google.gson.internal.Primitives;
+import com.smsgateway24.exceptions.ResponseException;
+import com.smsgateway24.response.Response;
 import com.smsgateway24.token.Token;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.net.URI;
 import java.net.URLEncoder;
 import java.net.http.HttpClient;
@@ -112,5 +116,18 @@ public class Client {
             }
         }
         return HttpRequest.BodyPublishers.ofString(builder.toString());
+    }
+
+    public <T> T parseResponseOf(String json, Class<T> classOfT) throws ResponseException {
+        Gson gson = new Gson();
+
+        //check response for error
+        Response res = gson.fromJson((String) json, Response.class);
+        if(res.getError() == 1) {
+            throw new ResponseException(res.getMessage());
+        }
+
+        Object object = gson.fromJson((String)json, (Type)classOfT);
+        return Primitives.wrap(classOfT).cast(object);
     }
 }

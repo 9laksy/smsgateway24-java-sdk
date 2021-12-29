@@ -16,3 +16,4 @@ public class Device {
         this.device_id = device_id;
     }
 }
+
